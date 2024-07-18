@@ -61,12 +61,13 @@ func getTaskHandler(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 	task, ok := tasks[id]
 	w.Header().Set("Content-Type", "application/json")
+	task, ok := tasks[id]
 	if !ok {
 		http.Error(w, "Bad Request", http.StatusBadRequest)
 		return
 	}
 	if err := json.NewEncoder(w).Encode(task); err != nil {
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		http.Error(w, "Bad Request", http.StatusBadRequest)
 	}
 }
 func deleteTaskHandler(w http.ResponseWriter, r *http.Request) {
