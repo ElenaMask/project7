@@ -59,7 +59,6 @@ func createTaskHandler(w http.ResponseWriter, r *http.Request) {
 }
 func getTaskHandler(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
-	task, ok := tasks[id]
 	w.Header().Set("Content-Type", "application/json")
 	task, ok := tasks[id]
 	if !ok {
